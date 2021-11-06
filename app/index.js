@@ -21,4 +21,7 @@ async function searchForContract() {
 }
 
 document.getElementById("deploy").addEventListener("click", newContract);
+// note: if you click on search too soon, you'll get an unhelpful metamask error about
+//       'gas estimations' which just means the contract hasn't been fully deployed yet
+//       so you just need to wait a minute or so
 document.getElementById("search").addEventListener("click", searchForContract);
