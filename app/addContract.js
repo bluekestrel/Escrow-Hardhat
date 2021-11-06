@@ -6,7 +6,8 @@ export default async function addContract(id, contract, arbiter, beneficiary, va
   const buttonId = `approve-${id}`;
 
   const container = document.getElementById("container");
-  container.innerHTML += createHTML(buttonId, arbiter, beneficiary, value);
+  console.log(contract.address)
+  container.innerHTML += createHTML(buttonId, arbiter, beneficiary, value, contract.address);
 
   contract.on('Approved', () => {
     document.getElementById(buttonId).className = "complete";
@@ -19,7 +20,7 @@ export default async function addContract(id, contract, arbiter, beneficiary, va
   });
 }
 
-function createHTML(buttonId, arbiter, beneficiary, value) {
+function createHTML(buttonId, arbiter, beneficiary, value, address) {
   return `
     <div class="existing-contract">
       <ul className="fields">
@@ -34,6 +35,10 @@ function createHTML(buttonId, arbiter, beneficiary, value) {
         <li>
           <div> Value </div>
           <div> ${value} </div>
+        </li>
+        <li>
+          <div> Address </div>
+          <div> ${address} </div>
         </li>
         <div class="button" id="${buttonId}">
           Approve

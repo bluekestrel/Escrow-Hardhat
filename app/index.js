@@ -1,5 +1,6 @@
 import {ethers} from 'ethers';
 import deploy from './deploy';
+import search from './search';
 import addContract from './addContract';
 import "./index.scss";
 
@@ -12,4 +13,10 @@ async function newContract() {
   addContract(++contracts, contract, arbiter, beneficiary, value);
 }
 
+async function searchForContract() {
+  const contractAddress = document.getElementById("contractAddress").value;
+  await search(contractAddress);
+}
+
 document.getElementById("deploy").addEventListener("click", newContract);
+document.getElementById("search").addEventListener("click", searchForContract);
