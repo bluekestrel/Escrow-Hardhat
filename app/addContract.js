@@ -6,7 +6,6 @@ export default async function addContract(id, contract, arbiter, beneficiary, va
   const buttonId = `approve-${id}`;
 
   const container = document.getElementById("container");
-  console.log(contract.address)
   container.innerHTML += createHTML(buttonId, arbiter, beneficiary, value, contract.address);
 
   contract.on('Approved', () => {
@@ -34,7 +33,7 @@ function createHTML(buttonId, arbiter, beneficiary, value, address) {
         </li>
         <li>
           <div> Value </div>
-          <div> ${value} </div>
+          <div> ${value} ETH </div>
         </li>
         <li>
           <div> Address </div>

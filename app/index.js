@@ -8,8 +8,10 @@ let contracts = 0;
 async function newContract() {
   const beneficiary = document.getElementById("beneficiary").value;
   const arbiter = document.getElementById("arbiter").value;
-  const value = ethers.BigNumber.from(document.getElementById("wei").value);
-  const contract = await deploy(arbiter, beneficiary, value);
+  const value = document.getElementById("eth").value;
+  const valueETH = ethers.utils.parseUnits(value, "ether");
+  const valueWEI = ethers.utils.parseUnits(valueETH.toString(), "wei");
+  const contract = await deploy(arbiter, beneficiary, valueWEI);
   addContract(++contracts, contract, arbiter, beneficiary, value);
 }
 

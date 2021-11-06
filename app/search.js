@@ -8,7 +8,8 @@ export default async function search(address) {
   const arbiter = await searchContract.arbiter();
   const beneficiary = await searchContract.beneficiary();
   const depositor = await searchContract.depositor();
-  const value = await provider.getBalance(address);
+  let value = await provider.getBalance(address);
+  value = ethers.utils.formatEther(value.toString());
   container.innerHTML += createHTML(arbiter, beneficiary, depositor, value);
 }
 
@@ -30,7 +31,7 @@ function createHTML(arbiter, beneficiary, depositor, value) {
         </li>
         <li>
           <div> Value </div>
-          <div> ${value} </div>
+          <div> ${value} ETH </div>
         </li>
       </ul>
     </div>
